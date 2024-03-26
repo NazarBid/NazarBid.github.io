@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}User List{% endblock %}</title>
+    <link rel="stylesheet" href="../static/css/styles.css">
+</head>
+<body>
+    <header>
+        <div style="text-align: right;">
+            <a href="{% url 'logout' %}">Logout</a>
+        </div>
+        <h1>User List</h1>
+    </header>
+    <nav style="text-align: center;">
+        <ul>
+            <div style="text-align: center"; class="mybutton">
+                <p><a href="agent_list.html">Agents</a>
+                <a href="property_list.html">Properties</a>
+                <a href="client_list.html">Clients</a>
+                <a href="request_list.html">Requests</a>
+            </div>
+        </ul>
+    </nav>
+    <ul>
+        {% for user in users %}
+            <li>
+                {{ user.id }} - {{ user.username }} ({{ user.role }})
+                <div class="mybutton">
+                    <p><a href="{% url 'user_detail' user.id %}">Details</a></p>
+                </div>
+            </li>
+        {% empty %}
+            <li>No users found</li>
+        {% endfor %}
+    </ul>
+    <div class="mybutton">
+        <p><a href="user_create.html">Create New User</a></p>
+    </div>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <p>&copy; 2024 Real Estate App</p>
+    </footer>
+</body>
+</html>

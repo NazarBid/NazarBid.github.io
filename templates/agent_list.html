@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agents</title>
+    <link rel="stylesheet" href="../static/css/styles.css">
+</head>
+<body>
+    <header>
+        <div style="text-align: right;" class="mybutton">
+            <p><a href="{% url 'logout' %}">Logout</a></p>
+        </div>
+        <h1>Real Estate App</h1>
+    </header>
+    <nav style="text-align: center;">
+        <ul>
+            <div style="text-align: center;" class="mybutton">
+                <p><a href="agent_list.html">Agents</a>
+                <a href="property_list.html">Properties</a>
+                <a href="client_list.html">Clients</a>
+                <a href="request_list.html">Requests</a>
+                <a href="user_list.html">Users</a></p>
+            </div>
+        </ul>
+    </nav>
+    <main>
+        <h2>List of Agents</h2>
+        <ul>
+            {% for agent in agents %}
+                <li>
+                    {{ agent.id }} - {{ agent.first_name }} {{ agent.last_name }}
+                    <div class="mybutton">
+                        <p><a href="{% url 'agent_detail' agent.id %}">Details</a></p>
+                    </div>
+                </li>
+            {% empty %}
+                <li>No agents found</li>
+            {% endfor %}
+        </ul>
+        <div class="mybutton">
+            <p><a href="agent_create.html">Create New Agent</a></p>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Real Estate App</p>
+    </footer>
+</body>
+</html>
